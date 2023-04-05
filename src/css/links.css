@@ -1,0 +1,10 @@
+a {
+	color: currentColor;
+	text-decoration-color: var(--color-primary);
+	text-decoration-thickness: .3ex;
+	text-underline-offset: .3ex;
+}
+
+a:visited {
+	color: #e872b7;
+}

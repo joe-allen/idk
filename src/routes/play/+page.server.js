@@ -6,7 +6,16 @@ import axios  from 'axios';
 let slug; // url param
 let radius = 16093; // 10 miles
 let randomOffset = 0; // randomize offset
-let limit = process.env.NODE_ENV === 'development' ? 3 : 40; // max yelp results
+let randomImg; // used to show random image on play page
+let limit = process.env.NODE_ENV === 'development' ? 2 : 30; // max yelp results
+
+export async function load() {
+	randomImg = Math.floor(Math.random() * 3);
+
+	return {
+		randomImg
+	}
+}
 
 // Get the total number of places
 // so an offset # can be used

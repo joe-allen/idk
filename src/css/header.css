@@ -1,0 +1,12 @@
+.b-header__mark-head {
+	stroke-width: 6;
+}
+
+.b-header__mark-question {
+	stroke-width: 6;
+}
+
+.b-header__mark-mark {
+	stroke: var(--color-secondary);
+	stroke-width: 4;
+}

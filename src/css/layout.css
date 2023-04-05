@@ -1,0 +1,22 @@
+main {
+	min-height: calc(100vh - 6em);
+	width: calc(100vw - 4em);
+	display: grid;
+	overflow: hidden;
+}
+
+.container {
+	grid-row: 1 / -1;
+	grid-column: 1 / -1;
+}
+
+@media (--xl-n-below) {
+	body {
+		overflow: visible;
+	}
+
+	main {
+		overflow: visible;
+		display: block;
+	}
+}

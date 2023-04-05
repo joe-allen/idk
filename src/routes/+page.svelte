@@ -1,1 +1,5 @@
-<h1>Welcome to IDK.FUN</h1>
+<script>
+	import Splash from "$lib/components/Splash.svelte";
+</script>
+
+<Splash />

@@ -3,3 +3,26 @@
 	width: 300px;
 	padding: var(--size-fluid-1) var(--size-fluid-3);
 }
+
+:where(select::-ms-expand) {
+	display: none;
+}
+
+:where(select) {
+	-webkit-appearance: none;
+	appearance: none;
+	/* background-image: url("/select-arrow.png"); */
+	background-image: url("data:image/svg+xml,<svg width='24' height='24' xmlns='http://www.w3.org/2000/svg'><path d='m0,6l12,12l12,-12l-24,0z'/><path fill='none' d='m0,0l24,0l0,24l-24,0l0,-24z'/></svg>");
+	background-position: 90% 50%;
+	background-size: 1em;
+}
+
+@media (--OSdark) {
+	:where(select) {
+		-webkit-appearance: none;
+		appearance: none;
+		background-image: url("data:image/svg+xml,<svg width='24' height='12' viewBox='0 0 24 12' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M0 0L12 12L24 0H0Z' fill='white'/></svg>");
+		background-position: 90% 50%;
+		background-size: 1em;
+	}
+}

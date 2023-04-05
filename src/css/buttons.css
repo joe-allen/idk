@@ -1,16 +1,22 @@
 button {
-	color: var(--gray-9);
+	color: var(--gray-1);
 	border: none;
 	padding: var(--size-fluid-1) var(--size-fluid-3);
 	border-radius: var(--radius-conditional-6);
 	box-shadow: var(--shadow-1);
-	background: var(--gradient-15);
-	background-image: var(--gradient-3), var(--noise-3);
+	background: var(--color-dark);
+	/* background-image: var(--gradient-3), var(--noise-3); */
 	text-shadow: none;
 
 	&:hover {
+		animation: var(--animation-pulse);
 		box-shadow: var(--shadow-2);
 	}
+}
+
+.b-button--secondary {
+	color: var(--gray-9);
+	background-image: var(--gradient-3), var(--noise-3);
 }
 
 /* theme: dark */
