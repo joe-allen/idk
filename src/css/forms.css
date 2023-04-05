@@ -1,0 +1,5 @@
+:where(input:not([type="radio"]), textarea, select) {
+	border-radius: 435435px;
+	width: 300px;
+	padding: var(--size-fluid-1) var(--size-fluid-3);
+}

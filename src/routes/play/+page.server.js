@@ -3,10 +3,10 @@ import { supabase } from '$lib/supabaseClient';
 import { fail } from '@sveltejs/kit';
 import axios  from 'axios';
 
-let limit = 4; // max yelp results
+let slug; // url param
 let radius = 16093; // 10 miles
 let randomOffset = 0; // randomize offset
-let slug;
+let limit = process.env.NODE_ENV === 'development' ? 3 : 40; // max yelp results
 
 // Get the total number of places
 // so an offset # can be used
@@ -22,7 +22,6 @@ async function getOffset(cat=null, zip=null) {
 	}
 
 	const offsetNumber = await axios.get(offset, {headers}).then((total) => {
-		// JOE CHECK FOR IF RESUTLS, ELSE SEND error msg
 		// console.log('total.data.totaltotal.data.total', total.data.total);
 		return fetchLocations(cat, zip, total.data.total)
 	});
@@ -64,7 +63,6 @@ async function fetchLocations(cat=null, zip=null,total=null) {
 }
 
 async function storePlace(yelp_results) {
-	// JOE CREATE USER_ID, INSERT BELOW, THen RETURN IT
 	// user_id = crypto.randomUUID();
 	slug = crypto.randomUUID();
 	const save = await supabase

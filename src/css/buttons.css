@@ -1,0 +1,25 @@
+button {
+	color: var(--gray-9);
+	border: none;
+	padding: var(--size-fluid-1) var(--size-fluid-3);
+	border-radius: var(--radius-conditional-6);
+	box-shadow: var(--shadow-1);
+	background: var(--gradient-15);
+	background-image: var(--gradient-3), var(--noise-3);
+	text-shadow: none;
+
+	&:hover {
+		box-shadow: var(--shadow-2);
+	}
+}
+
+/* theme: dark */
+@media (--OSdark) {
+	button {
+		box-shadow: var(--shadow-3);
+
+		&:hover {
+			box-shadow: var(--shadow-5);
+		}
+	}
+}
