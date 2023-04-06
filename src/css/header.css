@@ -7,6 +7,6 @@
 }
 
 .b-header__mark-mark {
-	stroke: var(--color-secondary);
+	stroke: var(--color-primary);
 	stroke-width: 4;
 }

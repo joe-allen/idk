@@ -39,8 +39,8 @@
 
 <section class="b-splash">
 	{#if animationReady }
-		 <h1
-		 	class="b-splash__title"
+			<h1
+				class="b-splash__title"
 			in:slide={{...optionsIn, x: -5}}
 			out:fade={{...optionsOut, x: -5}}
 			>IDK</h1>
@@ -58,14 +58,14 @@
 			<path
 				bind:this={question}
 				class="b-splash__svg-question-mark"
-				stroke="#0FF"
+				stroke="#e872b7"
 				stroke-width="5"
 				d="M353.4 51.7403C356.501 35.1309 360.613 22.4847 375.797 30.708C377.281 31.5118 378.646 32.5704 379.735 33.8609C389.917 45.9367 384.13 62.3354 381.703 73.3157L387.904 92.7591"
 			/>
 			<path
 				bind:this={mark}
 				class="b-splash__svg-question-mark"
-				fill="#0FF"
+				fill="#e872b7"
 				d="M398.917 109.228a4.001 4.001 0 0 1-7.787-1.837 4.001 4.001 0 0 1 7.787 1.837Z"
 			/>
 		</svg>
@@ -73,25 +73,30 @@
 </section>
 
 <style>
-
 	.b-splash {
 		display: flex;
 		flex-direction: column;
 		place-items: center;
-		min-height: calc(100vh - 4em);
+		/* min-height: calc(100vh - 4em); */
 		justify-content: center;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
 	}
 
 	.b-splash__title {
 		display: inline-block;
 		margin-bottom: var(--size-fluid-3);
 		overflow-x: hidden;
+		letter-spacing: .05em;
 		-webkit-text-stroke: 1.35px var(--color-secondary);
     color: transparent;
 		/* background: var(--gradient-3); */
 		/* -webkit-background-clip: text; */
 		/* -webkit-text-fill-color: transparent; */
 	}
+
 	.b-splash__mark {
 		width: 150px;
 	}

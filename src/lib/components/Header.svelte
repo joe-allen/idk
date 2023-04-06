@@ -1,9 +1,9 @@
 <script>
 	import { fade } from "svelte/transition";
 </script>
-<header in:fade>
+<header class="b-header" in:fade>
 	<a class="b-header__link" href="/play">
-		<h1>IDK</h1>
+		<h1 class="b-header__title">IDK</h1>
 		<div class="b-header__svg-wrap">
 			<svg class="b-header__link-mark" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 438 438" fill="none">
 				<g clip-path="url(#a)">
@@ -17,13 +17,13 @@
 				</g>
 				<path
 					class="b-header__mark-question"
-					stroke="#0FF"
+					stroke="#e872b7"
 					stroke-width="5"
 					d="M353.4 51.7403C356.501 35.1309 360.613 22.4847 375.797 30.708C377.281 31.5118 378.646 32.5704 379.735 33.8609C389.917 45.9367 384.13 62.3354 381.703 73.3157L387.904 92.7591"
 				/>
 				<path
 					class="b-header__mark-mark"
-					fill="#0FF"
+					fill="#e872b7"
 					d="M398.917 109.228a4.001 4.001 0 0 1-7.787-1.837 4.001 4.001 0 0 1 7.787 1.837Z"
 				/>
 			</svg>
@@ -32,19 +32,36 @@
 </header>
 
 <style lang="postcss">
-	.b-header__link {
+	.b-header {
 		display: flex;
 		align-items: center;
 		place-content: flex-end;
-		gap: var(--size-fluid-1);
+		position: fixed;
+		top: 2em;
+		right: 2em;
+		z-index: 9;
+	}
+	.b-header__link {
+		display: flex;
+		align-items: center;
 		text-decoration: none;
+		gap: .5rem;
 	}
 
-	h1 {
-		font-size: var(--step-0)
+	.b-header__title {
+		letter-spacing: .05em;
+		font-size: var(--step-2)
 	}
 
-	.b-header__link-mark {
-		/* width: 80px; */
+	@media screen and (max-width: 768px) {
+		.b-header {
+			place-content: center;
+			right: auto;
+			left: auto;
+		}
+
+		.b-header__link {
+			justify-content: center;
+		}
 	}
 </style>

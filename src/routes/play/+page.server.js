@@ -7,7 +7,7 @@ let slug; // url param
 let radius = 16093; // 10 miles
 let randomOffset = 0; // randomize offset
 let randomImg; // used to show random image on play page
-let limit = process.env.NODE_ENV === 'development' ? 2 : 30; // max yelp results
+let limit = process.env.NODE_ENV === 'development' ? 3 : 30; // max yelp results
 
 export async function load() {
 	randomImg = Math.floor(Math.random() * 3);
@@ -21,7 +21,7 @@ export async function load() {
 // so an offset # can be used
 async function getOffset(cat=null, zip=null) {
 	// consider appending param: &open_now=true
-	const offset = `https://api.yelp.com/v3/businesses/search?limit=1&radius=${radius}&location=${zip}&term=${cat}`
+	const offset = `https://api.yelp.com/v3/businesses/search?limit=1&radius=${radius}&location=${zip}&term=${cat}&open_now=true`
 	const headers = {
 		'Authorization': `Bearer ${PRIVATE_YELP_KEY}`,
 		'Accept': 'application/json',
@@ -31,7 +31,6 @@ async function getOffset(cat=null, zip=null) {
 	}
 
 	const offsetNumber = await axios.get(offset, {headers}).then((total) => {
-		// console.log('total.data.totaltotal.data.total', total.data.total);
 		return fetchLocations(cat, zip, total.data.total)
 	});
 
@@ -47,15 +46,15 @@ async function fetchLocations(cat=null, zip=null,total=null) {
 	if ( total ) {
 		randomOffset = Math.floor(Math.random() * parseInt((total - limit), 10));
 
-		// yelp max value for
-		// offset is 1000
+		// yelp's max value for
+		// the offset is 1000
 		if ( total >= 1000 ) {
 			randomOffset = Math.floor(Math.random() * (1000 - limit), 10);
 		}
 	}
 
 	// consider appending param: &open_now=true
-	const route = `https://api.yelp.com/v3/businesses/search?limit=${limit}&offset=${randomOffset}&radius=${radius}&location=${zip}&term=${cat}`
+	const route = `https://api.yelp.com/v3/businesses/search?limit=${limit}&offset=${randomOffset}&radius=${radius}&location=${zip}&term=${cat}&open_now=true`
 	const headers = {
 		'Authorization': `Bearer ${PRIVATE_YELP_KEY}`,
 		'Accept': 'application/json',

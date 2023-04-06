@@ -1,4 +1,5 @@
 a {
+	display: flex;
 	color: currentColor;
 	text-decoration-color: var(--color-primary);
 	text-decoration-thickness: .3ex;
