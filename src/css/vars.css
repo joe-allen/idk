@@ -8,6 +8,7 @@
 	--color-light: #efefef;
 	--color-primary: #e872b7;
 	--color-secondary: #0ff;
+	--color-primary-gradient: var(--gradient-3);
 
 	--brand: var(--color-primary);
 

@@ -3,12 +3,13 @@
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
 	import { linear, backInOut } from 'svelte/easing';
-	import { fade, blur, fly, slide, scale } from "svelte/transition";
+	import { fade, scale } from "svelte/transition";
 
 	import ClipboardJS from 'clipboard';
 
 	import Button from '$lib/components/Button.svelte';
 	import Header from '$lib/components/Header.svelte';
+	import Footer from '$lib/components/Footer.svelte';
 
 	/** @type {import('./$types').PageData} */
 	export let data;
@@ -18,6 +19,7 @@
 	let zip;
 	let userId;
 	let copyBtn;
+	let catName;
 	let loading;
 	let category;
 	let shareBtn;
@@ -35,6 +37,7 @@
 			showControls = !showControls
 			url = `${window.location}/${form.results.slug}`;
 			copyBtn.dataset.clipboardText = url;
+			catName = document.querySelector(`[value="${form.cat}"]`).textContent;
 		}
 
 		if (navigator.share) {
@@ -104,7 +107,6 @@
 			showControls = false;
 		}
 	}
-
 </script>
 
 <svelte:head>
@@ -120,6 +122,11 @@
 				<img class="b-play__img-img" src="/play/play-0.webp" alt="placeholder" width="400" height="400">
 				<img class="b-play__img-img" src="/play/play-1.webp" alt="placeholder" width="400" height="400">
 				<img class="b-play__img-img" src="/play/play-{data.randomImg}.webp" alt="placeholder" width="400" height="400">
+				{#if form && !form.error }
+				<div in:fade={{duration: 1000, easing: backInOut}} class="b-play__img-img b-play__img--not-found">
+					<p>Let's {catName}!</p>
+				</div>
+				{/if}
 			</div>
 			<div class="b-play__form flow">
 				{#if !showControls }
@@ -199,6 +206,8 @@
 	</div>
 </main>
 
+<Footer />
+
 <style lang="postcss">
 
 	.b-play {
@@ -240,6 +249,14 @@
 			transform: translate(-50%, -50%) rotate(16deg) scale(.9);
 			opacity: .9;
 			border: 8px solid var(--color-dark);
+		}
+
+		&.b-play__img--not-found {
+			opacity: 1;
+			background: var(--color-dark);
+			display: flex;
+			justify-content: center;
+			align-items: center;
 		}
 	}
 
@@ -320,11 +337,12 @@
 
 		.b-play__img-stack {
 			width: 100%;
+			margin-block-start: var(--size-6);
 
 			&::after {
 				content: '';
 				display: block;
-				padding-bottom: 400px;
+				padding-bottom: 250px;
 			}
 		}
 
@@ -334,6 +352,8 @@
 			display: flex;
 			gap: 2rem;
 			justify-content: center;
+			align-items: center;
+			padding-block-end: var(--size-9);
 		}
 
 		.b-play__controls {
@@ -348,7 +368,7 @@
 
 		.b-play__controls-info {
 			max-width: 100%;
-			margin-block: var(--step-1);
+			margin-block-end: var(--step-1);
 			width: 22ch;
 		}
 

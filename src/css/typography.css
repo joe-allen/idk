@@ -111,6 +111,10 @@ h3 {
 	max-width: 28ch;
 }
 
+svg {
+	filter: none;
+}
+
 .lede {
 	font-size: var(--step-1);
 	font-style: italic;

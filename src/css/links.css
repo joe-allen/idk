@@ -1,5 +1,4 @@
 a {
-	display: flex;
 	color: currentColor;
 	text-decoration-color: var(--color-primary);
 	text-decoration-thickness: .3ex;
@@ -8,4 +7,8 @@ a {
 
 a:visited {
 	color: #e872b7;
+}
+
+a.b-button {
+	display: flex;
 }

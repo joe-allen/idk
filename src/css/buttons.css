@@ -7,7 +7,7 @@ button {
 	box-shadow: var(--shadow-0);
 	background: var(--color-dark);
 	text-shadow: none;
-	/* background-image: var(--gradient-3), var(--noise-3); */
+	/* background-image: var(--gradient-3); */
 
 	&:hover {
 		animation: var(--animation-pulse);
@@ -26,7 +26,7 @@ button {
 	button {
 		&:hover {
 			animation: var(--animation-pulse);
-			box-shadow: var(--shadow-3);
+			box-shadow: var(--shadow-4);
 		}
 	}
 }

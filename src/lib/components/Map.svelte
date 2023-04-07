@@ -2,6 +2,7 @@
 	import ArcGISMap from '@arcgis/core/Map';
 	import MapView from '@arcgis/core/views/MapView';
 	import Graphic from '@arcgis/core/Graphic';
+
 	import '@arcgis/core/assets/esri/themes/dark/main.css';
 
 	import { onMount } from 'svelte';
@@ -13,9 +14,6 @@
 	let markers = [];
 
 	onMount(() => {
-		/**
-		 * Initialize
-		 */
 		const map = new ArcGISMap({
 			basemap: 'dark-gray-vector'
 		});
@@ -26,49 +24,36 @@
 			zoom: 12
 		});
 
+		// build array of markers
 		[...userItems].forEach(item => {
-			if (item.matched) {
-				markers.push({
-					location: {
-						x: item.location.coordinates.longitude,
-						y: item.location.coordinates.latitude,
-						type: 'point',
-					},
-					content: {
-						name: item.location.name,
-						alias: item.location.alias,
-						open: true,
-						phone: item.location.display_phone,
-						link: item.location.url,
-						img: item.location.image_url
-					},
-					matched: true
-				});
-			} else if (item.alias !== item.location.alias) {
-				markers.push({
-					location: {
-						x: item.coordinates.longitude,
-						y: item.coordinates.latitude,
-						type: 'point',
-					},
-					content: {
-						name: item.name,
-						alias: item.alias,
-						open: true,
-						phone: item.display_phone,
-						link: item.url,
-						img: item.image_url
-					}
-				});
-			}
+			markers.push({
+				location: {
+					x: item.coordinates.longitude,
+					y: item.coordinates.latitude,
+					type: 'point',
+				},
+				content: {
+					name: item.name,
+					alias: item.alias,
+					open: true,
+					phone: item.display_phone,
+					link: item.url,
+					img: item.image_url
+				},
+				matched: item.matched ? true : false
+			});
 		});
 
-		let matchedCoords = [markers[0].location.x, markers[0].location.y];
-		markers.forEach(function (marker, index) {
+		// set center coords
+		// if no POI match
+		let centerCoords = [markers[0].location.x, markers[0].location.y];
+
+		// add marker graphics to map view
+		markers.forEach(function (marker) {
 			view.graphics.add(
 				new Graphic({
-					attributes: marker.attributes, // Data attributes returned
-					geometry: marker.location, // Point returned
+					attributes: marker.attributes,
+					geometry: marker.location,
 					symbol: {
 						type: 'simple-marker',
 						color: '#000000',
@@ -79,10 +64,10 @@
 						}
 					},
 					popupTemplate: {
-						title: marker.content.name, // Data attribute names
+						title: marker.content.name,
 						content: `
-							<div style="">
-								<div style="">
+							<div>
+								<div>
 									<img style="
 											margin-top: 16px;
 											margin-bottom: 16px;
@@ -96,34 +81,32 @@
 								</div>
 								<div style="margin-bottom: 8px;"><strong>Open: </strong>${marker.content.open ? 'Yes' : 'No'}</div>
 								<div style="margin-bottom: 8px;"><strong>Phone: </strong><a href=tel:"${marker.content.phone ?? marker.content.phone}">${marker.content.phone}</a></div>
-								<div style=""><strong>Link: </strong><a href="${marker.content.link ?? marker.content.link}" target="_blank">yelp.com/${marker.content.alias ?? marker.content.alias}</a></div>
+								<div><strong>Link: </strong><a href="${marker.content.link ?? marker.content.link}" target="_blank">yelp.com/${marker.content.alias ?? marker.content.alias}</a></div>
 							</div>
 						`
 					}
 				})
 			);
 
+			// update center coords
+			// with POI match
 			if (marker.matched) {
-				matchedCoords = [];
-				matchedCoords.push(marker.location.x, marker.location.y);
+				centerCoords = [];
+				centerCoords.push(marker.location.x, marker.location.y);
 			}
 		});
 
-		// center on matched marker
+		// update map view
 		view.when(function () {
 			view.goTo({
-				center: [matchedCoords[0], matchedCoords[1]],
+				center: [centerCoords[0], centerCoords[1]],
 				zoom: 12
 			})
 		})
 		.catch(function (err) {
-			console.error('MapView rejected: ', err);
+			console.error('Map view rejected: ', err);
 		});
 	});
-
-	if (showMap) {
-		console.log('userItems', userItems);
-	}
 </script>
 
 {#if showMap}
@@ -158,4 +141,12 @@
 		height: 100vh;
 		object-fit: cover;
 	}
+
+	@media screen and (max-width: 768px) {
+		.b-map__canvas,
+		.b-map {
+			height: 100%;
+		}
+	}
 </style>
+

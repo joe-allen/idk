@@ -1,6 +1,7 @@
 <script>
 	import { fade } from "svelte/transition";
 </script>
+
 <header class="b-header" in:fade>
 	<a class="b-header__link" href="/play">
 		<h1 class="b-header__title">IDK</h1>
@@ -50,7 +51,20 @@
 
 	.b-header__title {
 		letter-spacing: .05em;
-		font-size: var(--step-2)
+		font-size: var(--step-2);
+	}
+
+	.b-header__mark-head {
+		stroke-width: 6;
+	}
+
+	.b-header__mark-question {
+		stroke-width: 6;
+	}
+
+	.b-header__mark-mark {
+		stroke: var(--color-primary);
+		stroke-width: 4;
 	}
 
 	@media screen and (max-width: 768px) {
