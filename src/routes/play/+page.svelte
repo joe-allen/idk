@@ -55,7 +55,7 @@
 
 		navigator.share({
 			title,
-			url,
+			text: url,
 		}).then(() => {
 			console.log('Nice');
 		}).error(() => {
