@@ -12,7 +12,7 @@ body {
 
 @media (--md-n-below) {
 	main {
-		padding-block-start: 4em;
+		padding-block: var(--size-12) var(--size-9);
 	}
 }
 

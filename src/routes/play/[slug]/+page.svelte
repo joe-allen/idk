@@ -429,6 +429,7 @@
 			display: grid;
 			grid-template-columns: 1fr;
 			grid-template-row: 1fr;
+			gap: var(--size-6);
 		}
 
 		.b-location__content {

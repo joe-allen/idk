@@ -40,7 +40,7 @@
 		position: fixed;
 		top: 2em;
 		right: 2em;
-		z-index: 9;
+		/* z-index: 9; */
 	}
 	.b-header__link {
 		display: flex;

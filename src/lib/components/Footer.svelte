@@ -16,4 +16,10 @@
 	p {
 		font-size: var(--step--1);
 	}
+
+	@media screen and (max-width: 550px) {
+		footer {
+			display: none;
+		}
+	}
 </style>

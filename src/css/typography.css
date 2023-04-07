@@ -90,7 +90,7 @@ blockquote {
 }
 
 :is(h1, h2, h3) + * {
-	--flow-space: .5em;
+	--flow-space: .65em;
 }
 
 article {

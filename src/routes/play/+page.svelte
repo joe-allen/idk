@@ -350,7 +350,7 @@
 			width: 100%;
 			height: 50%;
 			display: flex;
-			gap: 2rem;
+			gap: var(--size-6);
 			justify-content: center;
 			align-items: center;
 			padding-block-end: var(--size-9);
@@ -396,6 +396,7 @@
 			align-items: center;
 			justify-content: center;
 			flex-direction: column;
+			padding: 0;
 		}
 
 		.b-play__controls {
@@ -410,6 +411,12 @@
 		.b-play__form-title {
 			text-align: center;
 			margin-block-end: var(--size-4);
+		}
+	}
+
+	@media screen and (max-width: 550px) {
+		.b-play__form {
+			margin-block-start: var(--size-11);
 		}
 	}
 
