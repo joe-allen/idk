@@ -1,5 +1,5 @@
 <footer>
-	<p>&copy {new Date().getFullYear()} idk. All rights reserved. <a href="mailto:halves-dorados-0m@icloud.com?subject=IDK%20Question" target="_blank">Questions?</a></p>
+	<p>&copy {new Date().getFullYear()} IDK. All rights reserved. <a href="mailto:halves-dorados-0m@icloud.com?subject=IDK%20Question" target="_blank">Questions?</a></p>
 </footer>
 
 <style>

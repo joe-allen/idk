@@ -196,11 +196,11 @@
 		<svelte:component this={EsriMap} {showMap} {userItems} />
 		<button
 			on:click={() => showMap = false}
-			transition:fly={{y: 24}}
+			transition:fly={{delay: 1000, y: -24}}
 			id="map-close"
 			aria-controls="map"
 			aria-label="show website"
-			class="b-location__map-close"
+			class="b-location__close-map"
 		><svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg></button>
 	{/if}
 
@@ -285,29 +285,22 @@
 					{/each}
 				</div>
 				{#if !businesses.length}
-					<h1 class="b-location__no-results-title" transition:fade={{duration: 500, delay: 750, easing: backInOut}}>
-						Welp, no matches yet. <button
-							on:click={() => {
-								window.location.reload();
-							}}
-							class="b-button b-button--secondary"
-						>Try again</button
-						>
+					<div transition:fade={{duration: 500, delay: 500, easing: backInOut}} class="b-location__no-results">
+						<p class="b-location__no-results-title">
+							Welp, no matches yet. <button
+								on:click={() => {
+									window.location.reload();
+								}}
+								class="b-button b-button--secondary"
+							>Try again</button
+							>
+						</p>
 						{#if userItems.length}
-							or convince someone of the places you said
-							<button on:click={() => {showMap = true}} class="b-button b-button--secondary">Yes</button> to.
-						{/if}
-					</h1>
-					{#if userItems && showUserItems}
-						{#each userItems as item}
-							<p>
-								name: <a target="_blank" rel="nofollow noreferrer noopener" href={item.url}>{item.name}</a
-								><br>rating: {item.rating}
+							<p class="b-location__no-results-title">
+								See the places you want to go. <button on:click={() => {showMap = true}} class="b-button b-button--secondary">View Map</button>
 							</p>
-							<img src={item.image_url} width="300" height="366" alt="" />
-							<hr />
-						{/each}
-					{/if}
+						{/if}
+					</div>
 				{/if}
 			{/if}
 		</div>
@@ -412,23 +405,32 @@
 		}
 	}
 
-	.b-location__map-close {
+	.b-location__close-map {
 		position: fixed;
 		background: var(--gray-9);
-		bottom: 2em;
+		top: 1.3em;
 		right: 1.5em;
 		z-index: 9;
 	}
 
+	.b-location__no-results {
+		display: flex;
+		flex-direction: column;
+		gap: var(--size-4);
+	}
+
 	.b-location__no-results-title {
-		font-size: var(--step-3);
+		font-size: var(--step-4);
+		font-weight: 900;
+		max-width: 20ch;
+		line-height: 1.1em;
 	}
 
 	@media screen and (max-width: 1200px) {
 		.b-location__wrap {
 			display: grid;
 			grid-template-columns: 1fr;
-			grid-template-row: 1fr;
+			grid-template-rows: 1fr;
 			gap: var(--size-6);
 		}
 
@@ -471,9 +473,21 @@
 	}
 
 	@media screen and (max-width: 550px) {
-		.b-location__map-close {
-			/* bottom: 3em; */
-			/* right: 1.5em; */
+		.b-location__close-map {
+			top: 1.5em;
+		}
+
+		.b-location__cat {
+			flex-direction: column;
+		}
+
+		.b-location__cat span {
+			align-self: center;
+		}
+
+		.b-location__btn-wrap {
+			position: fixed;
+			bottom: 2rem;
 		}
 	}
 

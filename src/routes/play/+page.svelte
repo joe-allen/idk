@@ -119,9 +119,9 @@
 	<div class="container">
 		<section class="b-play">
 			<div class="b-play__img-stack">
-				<img class="b-play__img-img" src="/play/play-0.webp" alt="placeholder" width="400" height="400">
-				<img class="b-play__img-img" src="/play/play-1.webp" alt="placeholder" width="400" height="400">
-				<img class="b-play__img-img" src="/play/play-{data.randomImg}.webp" alt="placeholder" width="400" height="400">
+				<img class="b-play__img-img" src="/img/play/play-0.webp" alt="crepe" width="400" height="400">
+				<img class="b-play__img-img" src="/img/play/play-1.webp" alt="bar" width="400" height="400">
+				<img class="b-play__img-img" src="/img/play/play-{data.randomImg}.webp" alt="random image" width="400" height="400">
 				{#if form && !form.error }
 				<div in:fade={{duration: 1000, easing: backInOut}} class="b-play__img-img b-play__img--not-found">
 					<p>Let's {catName}!</p>

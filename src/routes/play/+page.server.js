@@ -7,7 +7,7 @@ let slug; // url param
 let radius = 16093; // 10 miles
 let randomOffset = 0; // randomize offset
 let randomImg; // used to show random image on play page
-let limit = process.env.NODE_ENV === 'development' ? 3 : 5; // max yelp results
+let limit = process.env.NODE_ENV === 'development' ? 3 : 25; // max yelp results
 
 export async function load() {
 	randomImg = Math.floor(Math.random() * 3);

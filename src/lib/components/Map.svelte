@@ -11,6 +11,7 @@
 
 	export let showMap;
 	export let userItems;
+	let isMatched = false;
 	let markers = [];
 
 	onMount(() => {
@@ -21,11 +22,16 @@
 		const view = new MapView({
 			map,
 			container: 'viewDiv',
-			zoom: 12
+			zoom: 10
 		});
 
 		// build array of markers
 		[...userItems].forEach(item => {
+
+			if (item.matched) {
+				isMatched = true;
+			}
+
 			markers.push({
 				location: {
 					x: item.coordinates.longitude,
@@ -100,7 +106,7 @@
 		view.when(function () {
 			view.goTo({
 				center: [centerCoords[0], centerCoords[1]],
-				zoom: 12
+				zoom: isMatched ? 12 : 10
 			})
 		})
 		.catch(function (err) {

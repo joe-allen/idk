@@ -16,6 +16,12 @@ body {
 	}
 }
 
+@media (--sm-n-below) {
+	main {
+		padding-block: var(--size-12) var(--size-10);
+	}
+}
+
 :where(img,svg,video) {
 	max-inline-size: none;
 }
