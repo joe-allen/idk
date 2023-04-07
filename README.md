@@ -52,7 +52,7 @@ Here's How:
 * Start the game
 * Get matched
 
-Of course, you and you friend may decide the matched location isn't perfect. No problem, start the game over of click on the map to see a list of the places you want to go.
+Of course, you and you friend may decide the matched location isn't perfect. No problem, start the game over or click on the map link to see a list of the places you want to go.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -63,6 +63,7 @@ Of course, you and you friend may decide the matched location isn't perfect. No 
 This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
 * [![Svelte][Svelte.dev]][Svelte-url]
+* [![Supabase][Supabase.com]][Supabase-url]
 * [![ArcGIS][ArcGIS.com]][ArcGIS-url]
 * [![GSAP][GSAP.com]][GSAP-url]
 
@@ -102,6 +103,7 @@ Joe Allen - [LinkedIn](https://www.linkedin.com/in/hey-joe/) - halves-dorados-0m
 ## Acknowledgments
 
 * [SvelteKit](https://kit.svelte.dev/)
+* [Supabase](https://supabase.com/)
 * [ArcGIS](https://developers.arcgis.com/)
 * [Open Props](https://open-props.style/#media-queries)
 * [Vercel](https://vercel.com/)
@@ -121,6 +123,8 @@ Joe Allen - [LinkedIn](https://www.linkedin.com/in/hey-joe/) - halves-dorados-0m
 [product-screenshot-2]: static/img/map.png
 [Svelte.dev]: https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00
 [Svelte-url]: https://svelte.dev/
+[Supabase.com]: https://img.shields.io/badge/Supabase-3fcf8e?style=for-the-badge&logo=supabase&logoColor=FF3E00
+[Supabase-url]: https://supabase.com/
 [ArcGIS.com]: https://img.shields.io/badge/ArcGIS-6d29cc?style=for-the-badge&logo=arcgis
 [ArcGIS-url]: https://developers.arcgis.com/
 [GSAP.com]: https://img.shields.io/badge/GSAP-000?style=for-the-badge&logo=greensock

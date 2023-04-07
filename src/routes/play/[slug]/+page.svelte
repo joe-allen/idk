@@ -48,7 +48,7 @@
 		if (n.length < 20) {
 			return n;
 		}
-		return `${n.slice(0, 20)}...`;
+		return `${n.slice(0, 16)}...`;
 	}
 
 	onMount(async () => {
