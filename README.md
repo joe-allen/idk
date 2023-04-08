@@ -60,8 +60,6 @@ Of course, you and you friend may decide the matched location isn't perfect. No 
 
 ### Built With
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-
 * [![Svelte][Svelte.dev]][Svelte-url]
 * [![Supabase][Supabase.com]][Supabase-url]
 * [![ArcGIS][ArcGIS.com]][ArcGIS-url]
