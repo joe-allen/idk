@@ -7,7 +7,7 @@ let slug; // url param
 let radius = 16093; // 10 miles
 let randomOffset = 0; // randomize offset
 let randomImg; // used to show random image on play page
-let limit = process.env.NODE_ENV === 'development' ? 3 : 25; // max yelp results
+let limit = process.env.NODE_ENV === 'development' ? 3 : 25; // set max yelp results
 
 export async function load() {
 	randomImg = Math.floor(Math.random() * 3);
@@ -119,7 +119,10 @@ export const actions = {
 			}
 
 		} catch (error) {
-			console.log('Error: ', error);
+			return fail(400, {
+				error: true,
+				message: 'Sorry, we couldn\'t find any results.',
+			});
 		}
   }
 

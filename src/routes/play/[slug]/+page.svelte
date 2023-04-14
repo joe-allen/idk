@@ -71,7 +71,7 @@
 		// [...businesses].forEach(b => {
 		// 	console.log('b.name', b.name);
 		// 	if (mqSm && b.name.length > 2) {
-		// 		b.name = 'Nimce';
+		// 		b.name = 'Nice';
 		// 		return b
 		// 	} else {
 		// 		return b
@@ -144,6 +144,7 @@
 			.from('locations_approved')
 			.select()
 			.neq('user_id', userId)
+			.eq('slug', slug)
 			.eq('location_id', id);
 
 		if (success.data.length) {
