@@ -8,9 +8,9 @@
 		bottom: 0;
 		left: 0;
 		padding: var(--size-1) 2em;
-		width: 100vw;
 		background: var(--surface-2);
 		color: var(--text-1);
+		z-index: -1;
 	}
 
 	p {

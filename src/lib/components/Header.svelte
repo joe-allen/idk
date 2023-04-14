@@ -1,9 +1,14 @@
 <script>
+	import { goto } from "$app/navigation";
 	import { fade } from "svelte/transition";
+
+	const reload = () => {
+		goto("/play");
+	};
 </script>
 
 <header class="b-header" in:fade>
-	<a class="b-header__link" href="/play">
+	<a class="b-header__link" on:click|preventDefault={reload} href="/play">
 		<h1 class="b-header__title">IDK</h1>
 		<div class="b-header__svg-wrap">
 			<svg class="b-header__link-mark" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 438 438" fill="none">
@@ -40,7 +45,7 @@
 		position: fixed;
 		top: 2em;
 		right: 2em;
-		/* z-index: 9; */
+		z-index: 1;
 	}
 	.b-header__link {
 		display: flex;
