@@ -6,6 +6,7 @@
 	import { fade, scale } from "svelte/transition";
 
 	import ClipboardJS from 'clipboard';
+	import toast, { Toaster } from 'svelte-french-toast';
 
 	import Button from '$lib/components/Button.svelte';
 	import Header from '$lib/components/Header.svelte';
@@ -32,12 +33,15 @@
 		// check if form exists
 		// and error free
 		if (form && !form.error) {
+			console.log('form', form);
 			loading = false;
 			pageTitle = form.cat;
 			showControls = !showControls
 			url = `${window.location}/${form.results.slug}`;
 			copyBtn.dataset.clipboardText = url;
 			catName = document.querySelector(`[value="${form.cat}"]`).textContent;
+		} else if (form && form.error) {
+			toast.error(form.message);
 		}
 
 		if (navigator.share) {
@@ -55,7 +59,7 @@
 
 		navigator.share({
 			title,
-			text: url,
+			text: `${url} `,
 		}).then(() => {
 			console.log('Nice');
 		}).error(() => {
@@ -161,7 +165,7 @@
 						</div>
 
 						{#if form && form.error }
-							<div>{form.message}</div>
+							<Toaster position="bottom-center" />
 						{/if}
 					</form>
 				{/if}
