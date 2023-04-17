@@ -10,6 +10,7 @@
 	--color-secondary: #0ff;
 	--color-primary-gradient: var(--gradient-3);
 
+	--body-bg: var(--surface-1);
 	--brand: var(--color-primary);
 
 	/* type scale */

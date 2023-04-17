@@ -5,6 +5,8 @@
 	import { fade, fly } from "svelte/transition";
 
 	import { gsap } from 'gsap';
+	import { Draggable } from '../../../../node_modules/gsap/src/Draggable';
+	import { InertiaPlugin } from '../../../../node_modules/gsap/src//InertiaPlugin';
 	import { supabase } from '$lib/supabaseClient.js';
 
 	import Header from '$lib/components/Header.svelte';
@@ -15,11 +17,14 @@
 	let userId;
 	let EsriMap;
 	let showMap;
+	let resetDrag = true;
 	let yLocation;
 	let nLocation;
 	let businesses;
 	let locationImg;
 	let showUserItems;
+	let hitAreaConfirm;
+	let hitAreaDecline;
 	let userItems = [];
 
 	$: match;
@@ -52,9 +57,86 @@
 	}
 
 	onMount(async () => {
+		gsap.registerPlugin(Draggable, InertiaPlugin);
+
 		const module = await import('../../../lib/components/Map.svelte');
 		locationImg = document.querySelector('.b-location__stack img');
 		EsriMap = module.default;
+
+		// JOE: Add MatchMedia / Gsap (Context) HERE
+		Draggable.create('.b-location__img', {
+			type: "x,y",
+			inertia: true,
+			edgeResistance: .8,
+			bounds: document.body,
+			snap: {
+				// x: function(endValue) {
+				// 	console.log('endValue', endValue);
+				// 	if (endValue < 80) {
+				// 		hitAreaConfirm.classList.remove('active');
+				// 		hitAreaDecline.classList.remove('active');
+				// 	}
+				// 	return Math.abs(endValue) < 80 ? endValue : 0;
+				// },
+				// y: function(endValue) {
+				// 	console.log('endValue', endValue);
+				// 	if (endValue < 80) {
+				// 		// gsap.set(document.body, {
+				// 		// 	background: `var(--body-bg)`
+				// 		// });
+				// 		hitAreaConfirm.classList.remove('active');
+				// 		hitAreaDecline.classList.remove('active');
+				// 	}
+				// 	return Math.abs(endValue) < 80 ? endValue : 0;
+				// }
+			},
+			onDragEnd: (e) => {
+				// if (e.movementX > 20) {
+				// 	// no
+				// 	console.log('no');
+				// 	// gsap.set(document.body, {
+				// 	// 	background: `var(--body-bg)`
+				// 	// });
+				// 	hitAreaConfirm.classList.remove('active');
+				// 	hitAreaDecline.classList.remove('active');
+				// } else if (e.movementX < -20) {
+				// 	// yes
+				// 	console.log('yes');
+				// 	// gsap.set(document.body, {
+				// 	// 	background: `var(--body-bg)`
+				// 	// })
+				// 	hitAreaConfirm.classList.remove('active');
+				// 	hitAreaDecline.classList.remove('active');
+				// }
+				resetDrag = true;
+			},
+			onDrag: (e) => {
+				if (e.movementX > 20 && resetDrag) {
+					// declining
+					hitAreaDecline.classList.add('active');
+					hitAreaDecline.setAttribute('confirm', 'true');
+
+					if (hitAreaConfirm.classList.contains('active')) {
+						hitAreaConfirm.classList.remove('active');
+						hitAreaConfirm.setAttribute('confirm', 'false');
+					}
+
+					no();
+					resetDrag = false;
+					return;
+
+				} else if (e.movementX < -20) {
+					// confirming
+					hitAreaConfirm.classList.add('active');
+					hitAreaConfirm.setAttribute('confirm', 'true');
+
+					if (hitAreaDecline.classList.contains('active')) {
+						hitAreaDecline.classList.remove('active');
+						hitAreaDecline.setAttribute('confirm', 'false');
+					}
+				}
+			}
+		})
 
 		// check svelte Store
 		// for userID
@@ -185,6 +267,7 @@
 
 	function no() {
 		// remove from array
+		console.log('businesses', businesses);
 		businesses = businesses.slice(1);
 		animateLocation();
 	}
@@ -310,6 +393,10 @@
 				{/if}
 			{/if}
 		</div>
+		<div class="b-location__hit-area">
+			<div bind:this={hitAreaConfirm} class="b-location__hit-area--confirm"></div>
+			<div bind:this={hitAreaDecline} class="b-location__hit-area--decline"></div>
+		</div>
 	</section>
 </main>
 
@@ -394,6 +481,7 @@
 		margin-inline-start: -.2rem;
 		margin-block-start: 1.85rem;
 		gap: 1.25rem;
+		z-index: 9999;
 	}
 
 	.b-location__match-btn-wrap {
@@ -430,6 +518,34 @@
 		font-weight: 900;
 		max-width: 20ch;
 		line-height: 1.1em;
+	}
+
+	.b-location__hit-area--confirm,
+	.b-location__hit-area--decline {
+		position: fixed;
+		bottom: 0;
+		left: 0%;
+		transform: translate(-50%, 50%);
+		width: 100vw;
+		height: 100vw;
+		border-radius: 50%;
+		opacity: 0;
+		transition: opacity .2s ease-out;
+		z-index: 11111;
+		background: radial-gradient(circle, var(--color-secondary) 0%, transparent 50%);
+		pointer-events: none;
+	}
+
+	.b-location__hit-area--decline {
+		background: radial-gradient(circle, var(--color-primary) 0%, transparent 50%);
+		right: 0;
+		transform: translate(50%, 50%);
+		left: auto;
+	}
+
+	:global(.b-location__hit-area--confirm.active),
+	:global(.b-location__hit-area--decline.active) {
+		opacity: 1 !important;
 	}
 
 	@media screen and (max-width: 1200px) {
