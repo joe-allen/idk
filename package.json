@@ -38,6 +38,7 @@
 	"type": "module",
 	"dependencies": {
 		"@arcgis/core": "^4.26.5",
+		"@neoconfetti/svelte": "^1.0.0",
 		"@supabase/auth-helpers-sveltekit": "^0.9.0",
 		"@supabase/supabase-js": "^2.12.1",
 		"axios": "^1.3.4",

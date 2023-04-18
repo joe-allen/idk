@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@arcgis/core': ^4.26.5
   '@fullhuman/postcss-purgecss': ^5.0.0
+  '@neoconfetti/svelte': ^1.0.0
   '@supabase/auth-helpers-sveltekit': ^0.9.0
   '@supabase/supabase-js': ^2.12.1
   '@sveltejs/adapter-auto': ^2.0.0
@@ -34,6 +35,7 @@ specifiers:
 
 dependencies:
   '@arcgis/core': 4.26.5
+  '@neoconfetti/svelte': 1.0.0
   '@supabase/auth-helpers-sveltekit': 0.9.0_xsbc22zrryolrdzefwydxtrkoq
   '@supabase/supabase-js': 2.14.0
   axios: 1.3.4
@@ -697,6 +699,10 @@ packages:
       '@jridgewell/resolve-uri': 3.1.0
       '@jridgewell/sourcemap-codec': 1.4.14
     dev: true
+
+  /@neoconfetti/svelte/1.0.0:
+    resolution: {integrity: sha512-SmksyaJAdSlMa9cTidVSIqYo1qti+WTsviNDwgjNVm+KQ3DRP2Df9umDIzC4vCcpEYY+chQe0i2IKnLw03AT8Q==}
+    dev: false
 
   /@nodelib/fs.scandir/2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
