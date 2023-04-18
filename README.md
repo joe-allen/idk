@@ -5,7 +5,7 @@
     <img src="static/img/logo-lockup.png" alt="Logo" width="200" height="278.082192">
   </a>
 
-  <h3 align="center">Don't know where to go? Choose a category and share with a friend.</h3>
+  <h3 align="center">Don't know where to go? Choose a category and share with a friend and see where you match.</h3>
 
   <p align="center">
 		&nbsp;
