@@ -342,6 +342,7 @@
 		height: 100vh;
 		width: 100vw;
 		overflow: hidden;
+		pointer-events: none;
 	}
 
 	.b-location__confetti {
